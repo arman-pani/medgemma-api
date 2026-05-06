@@ -18,15 +18,18 @@ A production-ready FastAPI backend for medical vision chat using MedGemma 1.5 on
 
 ## Docker
 
-1. **Build**:
+1. **Build** (run from the `backend` directory):
    ```bash
+   cd backend
    docker build -t medgemma-backend .
    ```
 2. **Run**:
    ```bash
-   docker run -d -p 8000:8000 --network="host" medgemma-backend
+   docker run -d -p 8000:8000 \
+     -e OLLAMA_BASE_URL="http://host.docker.internal:11434" \
+     medgemma-backend
    ```
-   _Note: Using `--network="host"` allows the container to access Ollama running on `localhost:11434`._
+   _Note: On Docker Desktop (Mac/Windows), use `host.docker.internal` to reach services running on your host machine (like Ollama)._
 
 ## API Usage
 
